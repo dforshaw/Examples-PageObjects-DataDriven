@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class BmiCalculatorPage extends BasePageObject {
 
-    // Determine how to locate New Job Link on the page
+// Define By locators instead of WebElements to avoid StaleElementException
     By heightCMSLocator = By.id("heightCMS");
     By weightKgLocator = By.id("weightKg");
     By calculateButtonLocator = By.id("Calculate");
@@ -25,21 +25,21 @@ public class BmiCalculatorPage extends BasePageObject {
     }
 
     // Method: BMI Calculator page allows user to type their height into the Height field
-    public BmiCalculatorPage typeHeight(String height) {
+    private BmiCalculatorPage typeHeight(String height) {
 
         typeFormValue(heightCMSLocator, height);
         return this;
     }
 
     // Method: BMI Calculator page allows user to type their weight into the Weight field
-    public BmiCalculatorPage typeWeight(String weight) {
+    private BmiCalculatorPage typeWeight(String weight) {
 
         typeFormValue(weightKgLocator, weight);
         return this;
     }
 
     // Method: used to generically enter a form value
-    public BmiCalculatorPage typeFormValue(By locator, String value) {
+    private BmiCalculatorPage typeFormValue(By locator, String value) {
 
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(value);
@@ -47,7 +47,7 @@ public class BmiCalculatorPage extends BasePageObject {
     }
 
     // Method: BMI Calculator page allows user to calculate their BMI
-    public BmiCalculatorPage submitCalculateButton() {
+    private BmiCalculatorPage submitCalculateButton() {
 
         driver.findElement(calculateButtonLocator).click();
         return this;
